@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Recruitment OCELLUS</title>
+	<title>Recruitment SiRekTa</title>
 
 	<link rel="stylesheet" href="bootstrap4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="bootstrap4/css/custom.css">
@@ -19,7 +19,7 @@
  ?>
 
 <div class="container">
-	<!-- jumbotron -->
+<!-- jumbotron -->
 <style>
 .jumbotron{
   margin: 50px 50px 50px 50px !important;
@@ -28,18 +28,7 @@
 
 h1{
   font-family: tahoma;
-  color:#2980b9;
   text-align: center;
-}
-hr{
-  width: 5%;
-  border: 1px solid black;
-  margin-bottom:60px;
-}
-
-p{
-  font-size: 19.5px;
-  text-align: justify;
 }
 
 .img-circle{
@@ -49,95 +38,114 @@ p{
 }
 </style>
 <div class="col-xs-12 jumbotron" style="background-color: transparent; backdrop-filter: blur(10px);">
-    <h1>Telkom Indonesia</h1>
-   <hr/>
+    <h1 style="color:#2980b9">Telkom Indonesia</h1>
+   <hr style="width: 5%; border: 1px solid black; margin-bottom:60px;">
    <div class="row">
      <div class="col-md-6 text-center">
-         <img src="https://www.allmystery.de/i/t251e55_2sqRkNr.png" alt="img1"/>
+         <img src="images/kantor.png" width=100% alt="img1"/>
      </div>
       <div class="col-md-6 text-center">
-         <p>Edwin Aldrin, integrante de la misión Apolo 11 que llevó al humano por primera vez a la Luna, ha presentado su testimonio: “hubo algo allá afuera lo suficientemente cerca como para ser observado y… ¿qué podría ser?”. Consultado acerca de por qué no reportaron dicha visión en el momento, Aldrin explicó que los tres integrantes de la misión prefirieron callarlo para evitar que desde la Tierra los obligaran a volver o les exigieran realizar un acercamiento riesgoso. <a href="https://mx.tuhistory.com/noticias/astronautas-de-la-nasa-confirman-la-existencia-de-ovnis-0" target="_blank" class="btn btn-primary btn-block" role="button">ver nota completa</a>
-</p>
+         <p style="font-size: 19.5px; text-align: justify;">PT Telkom Indonesia (Persero) Tbk (Telkom) adalah perusahaan telekomunikasi milik negara di Indonesia, yang sedang bertransformasi menjadi perusahaan telekomunikasi digital dengan strategi berorientasi pada pelanggan. TelkomGroup mengembangkan lini bisnis baru untuk meningkatkan efisiensi dan pengalaman pelanggan, sejalan dengan perkembangan teknologi dan digitalisasi. <a href="login2.php" target="_blank" class="btn btn-primary btn-block" role="button">Mulai Melamar</a></p>
      </div>
    </div>
- </div>
-
+</div>
 <!-- end of jumbotron -->
 
+<!-- karir -->
+<h1 id="karir">Karir</h1>
+<hr style="width: 5%; border: 1px solid black; margin-bottom:60px;">
+  <?php
+  error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
+  include"koneksi.php";
+  $post = $_GET["post"];
+  if (!$post) {
+  $ambil_berita = mysqli_query($connect,"SELECT * from lowongan order by id_lowongan desc"); 
+  while($hasil = mysqli_fetch_array($ambil_berita)){ 
+  ?> 
+   <div class="row-fluid"> 
+  
+     <div class="span8 text-center"> 
+       <h2><a href="career.php?post=<?=$hasil['id_lowongan'];?>"><?=$hasil['posisi_pekerjaan'];?></a></h2>
+		<h4> <?=$hasil['tgl_mulai'];?> s/d <?=$hasil['tgl_selesai'];?> </h4>
+        <br> 
+        <p> 
+          <a href="login2.php" class="btn magictime openDownLeftReturn btn-primary	">Apply</a>
+
+     <!--      <a href="#" class="btn magictime openDownLeftReturn btn-inverse"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Diposkan pada <?=$hasil['tgl_berita'];?></a>  -->
+        </p> 
+
+      </div>   
+    </div> 
+    <hr style="height: 10px; border: 0; box-shadow: 0 10px 10px -10px #1e88e5 inset;"> 
 
 
-<!-- carousel -->
-	<style>
-		.carousel-item img{
-			width:  100%;
-			max-height: 400px;
-		}
-	</style>
-		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+ <?php 
+  }  }
 
-		 <div class="carousel-inner">
-		    <div class="carousel-item active">
-		      <img class="d-block w-100" src="images/2.jpg" alt="First slide">
-		    </div>
-		    <div class="carousel-item">
-		      <img class="d-block w-100" src="images/4.jpg" alt="First slide">
-		    </div>
-		    <div class="carousel-item">
-		      <img class="d-block w-100" src="images/5.jpg" alt="Second slide">
-		    </div>
-		    <div class="carousel-item">
-		      <img class="d-block w-100" src="images/3.jpg" alt="Third slide">
-		    </div>
-		  </div>
-		  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		    <span class="sr-only">Previous</span>
-		  </a>
-		  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-		    <span class="sr-only">Next</span>
-		  </a>
-		</div>
-<!-- carousel -->
+  else
+  {
 
-<span style="height:40px;" ></span>
+ 
+  $ambil_berita = mysqli_query($connect, "SELECT * from lowongan where id_lowongan ='$post'"); 
+ $hasil = mysqli_fetch_array($ambil_berita); 
+ ?> 
+  <div class="paragraphs"> 
+   <div class="row"> 
+    <div class="panel-body">
+      <div class="tambahan"> 
+          <div class="content-heading">
+             <h3 class="text-center" style="color: black; font-weight: bold;"><?=$hasil['posisi_pekerjaan'];?></h3>
+             <h6 class="text-center"><?=$hasil['tgl_mulai']; ?> s/d <?=$hasil['tgl_selesai']; ?></h6>
+          </div> 
+          <hr>
+          <p class="text-center"><b><?=$hasil['tgl_mulai'];?> s/d <?=$hasil['tgl_selesai'];?></b></p>
+          <p><?=$hasil['deskripsi_pekerjaan'];?></p>
+          <br>
+          <p><b>Jurusan Akademik : </b><?=$hasil['jurusan_akademik'];?></p>
+          <p><b>Lokasi Pekerjaan : </b><?=$hasil['lokasi_pekerjaan'];?></p>
+          <p><b>Lokasi Seleksi :</b><?=$hasil['lokasi_seleksi'];?></p>
+          <br>
 
-	<!-- card group -->
-	<div class="row">
-	  <div class="col-sm-4">
-	    <div class="card">
-	      <div class="card-body">
-	        <h4 class="card-title">Visi</h4>
-	        <p class="card-text">Menjadi Perusahaan Pest Manajemen Service terbaik di Indonesia dengan memberikan nilai tambah untuk karyawan, pelanggan dan lingkungan</p>
-	      </div>
-	    </div>
-	  </div>
-
-	  <div class="col-sm-4">
-	    <div class="card">
-	      <div class="card-body">
-	        <h4 class="card-title">Misi</h4>
-	        <p class="card-text">Ocellus akan memberikan layanan konsistensi, dan aman untuk karyawan, pelanggan dan lingkungan</p>
-	      </div>
-	    </div>
-	  </div>
-
-	  <div class="col-sm-4">
-	    <div class="card">
-	      <div class="card-body">
-	        <h4 class="card-title">Tentang</h4>
-	        <p class="card-text">Nama perusahaan : PT. OCELLUS INDONESIA</p>
-	       	<p class="card-text">Tahun Berdiri : 14 November 2009</p>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	<!-- card group -->
+      
 
 
+
+          <hr style="height: 10px; border: 0; box-shadow: 0 10px 10px -10px #1e88e5 inset;"> 
+
+        
+
+        <div style="clear: both;"></div>
+
+          
+
+    </div> 
+    </div>
+   </div> 
+  </div> 
+
+
+    <?php
+  $ambil_recent = mysqli_query($connect,"SELECT * from lowongan "); 
+ ?> 
+  <div class="panel-berita"> 
+    
+     <div class="panel-heading">Baca Juga</div> 
+      <ul type="square"> 
+       <?php 
+    while($hasil_recent= mysqli_fetch_array($ambil_recent)){ 
+       echo "<li><a href='career.php?link=lihatDetailtnt.php&id=$hasil_recent[id_lowongan]'>Lowongan ".$hasil_recent['posisi_pekerjaan']."</a></li>"; 
+    } 
+    ?> 
+      </ul> 
+  
+  </div>
+
+<?php 
+  }
+ ?>
+<!-- end of karir -->
 
 </div>
-
 
 <?php 
 	include "footerb4.php";
