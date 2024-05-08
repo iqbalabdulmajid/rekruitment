@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 14 Des 2017 pada 09.42
--- Versi Server: 10.1.25-MariaDB
--- PHP Version: 5.6.31
+-- Generation Time: May 08, 2024 at 12:05 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tugas_web`
+-- Database: `db_sirekta_alia`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -41,10 +40,10 @@ CREATE TABLE `admin` (
   `no_tlp` varchar(12) NOT NULL,
   `nip` varchar(7) NOT NULL,
   `jabatan` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`id_admin`, `username`, `password`, `nama`, `jekel`, `tempat_lhr`, `tgl_lhr`, `agama`, `alamat`, `no_tlp`, `nip`, `jabatan`) VALUES
@@ -54,7 +53,7 @@ INSERT INTO `admin` (`id_admin`, `username`, `password`, `nama`, `jekel`, `tempa
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `lowongan`
+-- Table structure for table `lowongan`
 --
 
 CREATE TABLE `lowongan` (
@@ -68,10 +67,10 @@ CREATE TABLE `lowongan` (
   `lokasi_pekerjaan` varchar(35) NOT NULL,
   `nip` varchar(15) NOT NULL,
   `view` enum('aktif','tidak aktif','','') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `lowongan`
+-- Dumping data for table `lowongan`
 --
 
 INSERT INTO `lowongan` (`id_lowongan`, `posisi_pekerjaan`, `lokasi_seleksi`, `tgl_mulai`, `tgl_selesai`, `deskripsi_pekerjaan`, `jurusan_akademik`, `lokasi_pekerjaan`, `nip`, `view`) VALUES
@@ -83,7 +82,7 @@ INSERT INTO `lowongan` (`id_lowongan`, `posisi_pekerjaan`, `lokasi_seleksi`, `tg
 
 --
 -- Stand-in structure for view `master_pelamar`
--- (Lihat di bawah untuk tampilan aktual)
+-- (See below for the actual view)
 --
 CREATE TABLE `master_pelamar` (
 `id_pelamar` int(5)
@@ -156,7 +155,7 @@ CREATE TABLE `master_pelamar` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pelamar`
+-- Table structure for table `pelamar`
 --
 
 CREATE TABLE `pelamar` (
@@ -218,10 +217,10 @@ CREATE TABLE `pelamar` (
   `dokumen` longtext NOT NULL,
   `foto` longtext NOT NULL,
   `file_sertifikat` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `pelamar`
+-- Dumping data for table `pelamar`
 --
 
 INSERT INTO `pelamar` (`id_pelamar`, `posisi_pekerjaan`, `lokasi_seleksi`, `username`, `password`, `nama`, `jekel`, `tempat_lhr`, `tgl_lhr`, `alamat`, `kodepos`, `kota`, `no_tlp`, `no_hp`, `ktp`, `negara`, `agama`, `hobi`, `alamat_ortu`, `kodepos_ortu`, `kota_ortu`, `status`, `jml_anak`, `nm_kel`, `hubungan`, `alamat_kel`, `no_kel`, `pendidikan`, `nm_sekolah`, `jurusan`, `tgl_mulai`, `tgl_selesai`, `nilai`, `organisasi`, `jabatan`, `periode_org`, `nm_kursus`, `tahun`, `penyelenggara`, `peringkat`, `bahasa`, `dengar`, `baca`, `bicara`, `tulis`, `nm_pt`, `tgl_awal`, `tgl_akhir`, `almt_pt`, `tlp_pt`, `jabat_awal`, `jabat_akhir`, `nm_atasan`, `alasan`, `gaji`, `dokumen`, `foto`, `file_sertifikat`) VALUES
@@ -232,7 +231,7 @@ INSERT INTO `pelamar` (`id_pelamar`, `posisi_pekerjaan`, `lokasi_seleksi`, `user
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_nilai`
+-- Table structure for table `tbl_nilai`
 --
 
 CREATE TABLE `tbl_nilai` (
@@ -245,10 +244,10 @@ CREATE TABLE `tbl_nilai` (
   `jenis_soal` varchar(20) NOT NULL,
   `tgl_ujian` date NOT NULL,
   `keterangan` enum('Lulus','Tidak Lulus','','') DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `tbl_nilai`
+-- Dumping data for table `tbl_nilai`
 --
 
 INSERT INTO `tbl_nilai` (`id_nilai`, `id_pelamar`, `jawaban_benar`, `jawaban_salah`, `jawaban_kosong`, `score`, `jenis_soal`, `tgl_ujian`, `keterangan`) VALUES
@@ -261,7 +260,7 @@ INSERT INTO `tbl_nilai` (`id_nilai`, `id_pelamar`, `jawaban_benar`, `jawaban_sal
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_soal`
+-- Table structure for table `tbl_soal`
 --
 
 CREATE TABLE `tbl_soal` (
@@ -276,10 +275,10 @@ CREATE TABLE `tbl_soal` (
   `tanggal` date NOT NULL,
   `aktif` enum('Y','N') NOT NULL,
   `nip` varchar(20) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `tbl_soal`
+-- Dumping data for table `tbl_soal`
 --
 
 INSERT INTO `tbl_soal` (`id_soal`, `soal`, `jenis_soal`, `a`, `b`, `c`, `d`, `knc_jawaban`, `tanggal`, `aktif`, `nip`) VALUES
@@ -295,11 +294,11 @@ INSERT INTO `tbl_soal` (`id_soal`, `soal`, `jenis_soal`, `a`, `b`, `c`, `d`, `kn
 -- --------------------------------------------------------
 
 --
--- Struktur untuk view `master_pelamar`
+-- Structure for view `master_pelamar`
 --
 DROP TABLE IF EXISTS `master_pelamar`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `master_pelamar`  AS  select `pelamar`.`id_pelamar` AS `id_pelamar`,`pelamar`.`posisi_pekerjaan` AS `posisi_pekerjaan`,`pelamar`.`lokasi_seleksi` AS `lokasi_seleksi`,`pelamar`.`username` AS `username`,`pelamar`.`password` AS `password`,`pelamar`.`nama` AS `nama`,`pelamar`.`jekel` AS `jekel`,`pelamar`.`tempat_lhr` AS `tempat_lhr`,`pelamar`.`tgl_lhr` AS `tgl_lhr`,`pelamar`.`alamat` AS `alamat`,`pelamar`.`kodepos` AS `kodepos`,`pelamar`.`kota` AS `kota`,`pelamar`.`no_tlp` AS `no_tlp`,`pelamar`.`no_hp` AS `no_hp`,`pelamar`.`ktp` AS `ktp`,`pelamar`.`negara` AS `negara`,`pelamar`.`agama` AS `agama`,`pelamar`.`hobi` AS `hobi`,`pelamar`.`alamat_ortu` AS `alamat_ortu`,`pelamar`.`kodepos_ortu` AS `kodepos_ortu`,`pelamar`.`kota_ortu` AS `kota_ortu`,`pelamar`.`status` AS `status`,`pelamar`.`jml_anak` AS `jml_anak`,`pelamar`.`nm_kel` AS `nm_kel`,`pelamar`.`hubungan` AS `hubungan`,`pelamar`.`alamat_kel` AS `alamat_kel`,`pelamar`.`no_kel` AS `no_kel`,`pelamar`.`pendidikan` AS `pendidikan`,`pelamar`.`nm_sekolah` AS `nm_sekolah`,`pelamar`.`jurusan` AS `jurusan`,`pelamar`.`tgl_mulai` AS `tgl_mulai`,`pelamar`.`tgl_selesai` AS `tgl_selesai`,`pelamar`.`nilai` AS `nilai`,`pelamar`.`organisasi` AS `organisasi`,`pelamar`.`jabatan` AS `jabatan`,`pelamar`.`periode_org` AS `periode_org`,`pelamar`.`nm_kursus` AS `nm_kursus`,`pelamar`.`tahun` AS `tahun`,`pelamar`.`penyelenggara` AS `penyelenggara`,`pelamar`.`peringkat` AS `peringkat`,`pelamar`.`bahasa` AS `bahasa`,`pelamar`.`dengar` AS `dengar`,`pelamar`.`baca` AS `baca`,`pelamar`.`bicara` AS `bicara`,`pelamar`.`tulis` AS `tulis`,`pelamar`.`nm_pt` AS `nm_pt`,`pelamar`.`tgl_awal` AS `tgl_awal`,`pelamar`.`tgl_akhir` AS `tgl_akhir`,`pelamar`.`almt_pt` AS `almt_pt`,`pelamar`.`tlp_pt` AS `tlp_pt`,`pelamar`.`jabat_awal` AS `jabat_awal`,`pelamar`.`jabat_akhir` AS `jabat_akhir`,`pelamar`.`nm_atasan` AS `nm_atasan`,`pelamar`.`alasan` AS `alasan`,`pelamar`.`gaji` AS `gaji`,`pelamar`.`dokumen` AS `dokumen`,`pelamar`.`foto` AS `foto`,`pelamar`.`file_sertifikat` AS `file_sertifikat`,`tbl_nilai`.`jawaban_benar` AS `jawaban_benar`,`tbl_nilai`.`jawaban_salah` AS `jawaban_salah`,`tbl_nilai`.`jawaban_kosong` AS `jawaban_kosong`,`tbl_nilai`.`score` AS `score`,`tbl_nilai`.`jenis_soal` AS `jenis_soal`,`tbl_nilai`.`tgl_ujian` AS `tgl_ujian`,`tbl_nilai`.`keterangan` AS `keterangan` from (`pelamar` join `tbl_nilai`) where (`pelamar`.`id_pelamar` = `tbl_nilai`.`id_pelamar`) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `master_pelamar`  AS SELECT `pelamar`.`id_pelamar` AS `id_pelamar`, `pelamar`.`posisi_pekerjaan` AS `posisi_pekerjaan`, `pelamar`.`lokasi_seleksi` AS `lokasi_seleksi`, `pelamar`.`username` AS `username`, `pelamar`.`password` AS `password`, `pelamar`.`nama` AS `nama`, `pelamar`.`jekel` AS `jekel`, `pelamar`.`tempat_lhr` AS `tempat_lhr`, `pelamar`.`tgl_lhr` AS `tgl_lhr`, `pelamar`.`alamat` AS `alamat`, `pelamar`.`kodepos` AS `kodepos`, `pelamar`.`kota` AS `kota`, `pelamar`.`no_tlp` AS `no_tlp`, `pelamar`.`no_hp` AS `no_hp`, `pelamar`.`ktp` AS `ktp`, `pelamar`.`negara` AS `negara`, `pelamar`.`agama` AS `agama`, `pelamar`.`hobi` AS `hobi`, `pelamar`.`alamat_ortu` AS `alamat_ortu`, `pelamar`.`kodepos_ortu` AS `kodepos_ortu`, `pelamar`.`kota_ortu` AS `kota_ortu`, `pelamar`.`status` AS `status`, `pelamar`.`jml_anak` AS `jml_anak`, `pelamar`.`nm_kel` AS `nm_kel`, `pelamar`.`hubungan` AS `hubungan`, `pelamar`.`alamat_kel` AS `alamat_kel`, `pelamar`.`no_kel` AS `no_kel`, `pelamar`.`pendidikan` AS `pendidikan`, `pelamar`.`nm_sekolah` AS `nm_sekolah`, `pelamar`.`jurusan` AS `jurusan`, `pelamar`.`tgl_mulai` AS `tgl_mulai`, `pelamar`.`tgl_selesai` AS `tgl_selesai`, `pelamar`.`nilai` AS `nilai`, `pelamar`.`organisasi` AS `organisasi`, `pelamar`.`jabatan` AS `jabatan`, `pelamar`.`periode_org` AS `periode_org`, `pelamar`.`nm_kursus` AS `nm_kursus`, `pelamar`.`tahun` AS `tahun`, `pelamar`.`penyelenggara` AS `penyelenggara`, `pelamar`.`peringkat` AS `peringkat`, `pelamar`.`bahasa` AS `bahasa`, `pelamar`.`dengar` AS `dengar`, `pelamar`.`baca` AS `baca`, `pelamar`.`bicara` AS `bicara`, `pelamar`.`tulis` AS `tulis`, `pelamar`.`nm_pt` AS `nm_pt`, `pelamar`.`tgl_awal` AS `tgl_awal`, `pelamar`.`tgl_akhir` AS `tgl_akhir`, `pelamar`.`almt_pt` AS `almt_pt`, `pelamar`.`tlp_pt` AS `tlp_pt`, `pelamar`.`jabat_awal` AS `jabat_awal`, `pelamar`.`jabat_akhir` AS `jabat_akhir`, `pelamar`.`nm_atasan` AS `nm_atasan`, `pelamar`.`alasan` AS `alasan`, `pelamar`.`gaji` AS `gaji`, `pelamar`.`dokumen` AS `dokumen`, `pelamar`.`foto` AS `foto`, `pelamar`.`file_sertifikat` AS `file_sertifikat`, `tbl_nilai`.`jawaban_benar` AS `jawaban_benar`, `tbl_nilai`.`jawaban_salah` AS `jawaban_salah`, `tbl_nilai`.`jawaban_kosong` AS `jawaban_kosong`, `tbl_nilai`.`score` AS `score`, `tbl_nilai`.`jenis_soal` AS `jenis_soal`, `tbl_nilai`.`tgl_ujian` AS `tgl_ujian`, `tbl_nilai`.`keterangan` AS `keterangan` FROM (`pelamar` join `tbl_nilai`) WHERE `pelamar`.`id_pelamar` = `tbl_nilai`.`id_pelamar``id_pelamar`  ;
 
 --
 -- Indexes for dumped tables
@@ -344,21 +343,25 @@ ALTER TABLE `tbl_soal`
 --
 ALTER TABLE `admin`
   MODIFY `id_admin` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32009;
+
 --
 -- AUTO_INCREMENT for table `pelamar`
 --
 ALTER TABLE `pelamar`
   MODIFY `id_pelamar` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=320014;
+
 --
 -- AUTO_INCREMENT for table `tbl_nilai`
 --
 ALTER TABLE `tbl_nilai`
   MODIFY `id_nilai` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT for table `tbl_soal`
 --
 ALTER TABLE `tbl_soal`
-  MODIFY `id_soal` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;COMMIT;
+  MODIFY `id_soal` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

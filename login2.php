@@ -59,7 +59,7 @@ if($_SESSION){
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Recruitment OCELLUS</title>
+	<title>Recruitment SiRekTa</title>
 
 	<link rel="stylesheet" href="bootstrap4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="bootstrap4/css/login.css">
@@ -94,6 +94,7 @@ if($_SESSION){
 							<div class="form-group">
 								<select name="level" class="form-control" required>
 								<option value="">Pilih Hak Akses</option>
+								<option value="ho">Head Office</option>
 								<option value="admin">HRD</option>
 								<option value="pelamar">Pelamar</option>
 							 	</select>

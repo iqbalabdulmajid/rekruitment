@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-transparent fixed-top">
-  <a class="navbar-brand" href="#"><a href="https://logowik.com/telkom-indonesia-logo-vector-svg-pdf-ai-eps-cdr-free-download-17650.html"><img src="telkom.png" style="max-width: 100px; background-color:transparent;"></a>
+  <a class="navbar-brand" href="#"><a href="https://logowik.com/telkom-indonesia-logo-vector-svg-pdf-ai-eps-cdr-free-download-17650.html"><img src="images/telkom.png" style="max-width: 100px; background-color:transparent;"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -9,10 +9,7 @@
         <a class="nav-link" href="index.php">Beranda <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="hta.php">Bagaimana Cara Menerapkannya</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="career.php">Karir</a>
+        <a class="nav-link" href="#karir">Karir</a>
       </li>
     </ul>
     <span class="nav-item">
