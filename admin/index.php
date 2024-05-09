@@ -83,6 +83,13 @@ if(@$_SESSION['admin']){
                         </ul>
                     </li>
                    
+                    <li>
+                        <a target="iframe_a" style="color: white;"><i class="fa fa-briefcase" aria-hidden="true"></i> <span style="margin-left:10px;">HrMista</span>  </a>
+                        <ul style="color: white; list-style-type: none; margin-left: 10px;">
+                          <li><a target="iframe_a" href="hasil_test.php">Employe Management</a></li>
+                          <li><a target="iframe_a" href="e-contract.php">E-contrcat</a></li>
+                        </ul>
+                    </li>
                    
                 </ul>
             </div>

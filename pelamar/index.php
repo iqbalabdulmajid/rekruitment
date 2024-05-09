@@ -48,7 +48,7 @@ if(@$_SESSION['pelamar']){
                         <a target="iframe_a" style="color: white;"><i class="fa fa-home " aria-hidden="true"> </i> <span style="margin-left:10px;">Profile</span>  </a>
                         <ul style="color: white; list-style-type: none; margin-left: 10px;">
                           <li><a target="iframe_a" href="lihat_plmr.php?id_pelamar=<?php echo"$id_pelamar"; ?>">Lihat Profile</a></li>
-                          <li><a target="iframe_a" href="up_plmr.php?id_pelamar=<?php echo"$id_pelamar"; ?>">Update Profile</a></li>
+                          <li><a target="iframe_a" href="up_plmr.php?id_pelamar=<?php echo"$id_pelamar"; ?>">isi Profile</a></li>
                           <li><a target="iframe_a" href="pass.php?id_pelamar=<?php echo"$id_pelamar"; ?>">Ganti Password</a></li>
 
 
