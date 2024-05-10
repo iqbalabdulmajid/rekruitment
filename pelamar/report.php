@@ -1,93 +1,67 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Hello, world!</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<?php
+session_start();
+include "koneksi.php";
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-  </head>
-  <body style="margin-top: 20px;background: transparent;">
+if (isset($_SESSION['pelamar'])) {
+    $id_pelamar = $_SESSION['pelamar'];
 
-    <div class="container">
-      
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Inisialisasi variabel jawaban benar, salah, dan kosong
+        $jawaban_benar = 0;
+        $jawaban_salah = 0;
+        $jawaban_kosong = 0;
 
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Selesai</strong> Anda Sudah Mengerjakan Ujian.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+        foreach ($_POST['pilihan'] as $id_soal => $jawaban) {
+            $query_soal = "SELECT * FROM tbl_soal WHERE id_soal = '$id_soal'";
+            $hasil_soal = mysqli_query($connect, $query_soal);
 
-    <?php 
+            if (mysqli_num_rows($hasil_soal) > 0) {
+                $data_soal = mysqli_fetch_assoc($hasil_soal);
 
-      include 'koneksi.php';
-      $id_pelamar=$_GET['id_pelamar'];
-      $carihasil = mysqli_query($connect,"SELECT * FROM tbl_nilai where id_pelamar='$id_pelamar'");
-      $datahasil = mysqli_fetch_array($carihasil); 
-     ?>
+                if ($jawaban == $data_soal['knc_jawaban']) {
+                    $jawaban_benar++;
+                } else if ($jawaban != '') {
+                    $jawaban_salah++;
+                } else {
+                    $jawaban_kosong++;
+                }
+            } else {
+                echo "Terjadi kesalahan dalam mendapatkan data soal.";
+                exit();
+            }
+        }
 
-     <table border="0">
-       <tr>
-         <td>ID PELAMAR</td>
-         <td width="20">:</td>
-         <td><?php echo $datahasil['id_pelamar']; ?></td>
-       </tr>
+        $total_score = $jawaban_benar * 10; // Anggap setiap jawaban benar bernilai 10
 
-       <tr height="20"><td></td></tr>
+        $update_query = "UPDATE tbl_nilai SET jawaban_benar = '$jawaban_benar', jawaban_salah = '$jawaban_salah', jawaban_kosong = '$jawaban_kosong', score = '$total_score' WHERE id_pelamar = '$id_pelamar'";
+        $result_update = mysqli_query($connect, $update_query);
 
-       <tr>
-         <td>Jawaban Benar</td>
-         <td>:</td>
-         <td><?php echo $datahasil['jawaban_benar']; ?></td>
-       </tr>
+        if ($result_update) {
+            $status = '';
+            if ($total_score >= 70) {
+                $status = 'Lulus'; // Ubah sesuai dengan kriteria kelulusan yang diinginkan
+            } else {
+                $status = 'Tidak Lulus';
+            }
 
-       <tr height="20"><td></td></tr>
+            $update_status_query = "UPDATE tbl_nilai SET keterangan = '$status' WHERE id_pelamar = '$id_pelamar'";
+            $result_status_update = mysqli_query($connect, $update_status_query);
 
-       <tr>
-         <td>Jawaban Salah</td>
-         <td>:</td>
-         <td><?php echo $datahasil['jawaban_salah']; ?></td>
-       </tr>
-
-       <tr height="20"><td></td></tr>
-
-       <tr>
-         <td>Jawaban Kosong</td>
-         <td>:</td>
-         <td><?php echo $datahasil['jawaban_kosong']; ?></td>
-       </tr>
-
-       <tr height="20"><td></td></tr>
-
-       <tr>
-         <td>Nilai Akhir</td>
-         <td>:</td>
-         <td><?php echo $datahasil['score']; ?></td>
-       </tr>
-
-       <tr height="20"><td></td></tr>
-
-       <tr>
-         <td>Keterangan</td>
-         <td>:</td>
-         <td><?php echo $datahasil['keterangan']; ?></td>
-       </tr>
-
-
-
-
-     </table>
-    </div>
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-  </body>
-</html>
+            if ($result_status_update) {
+                // $keterangan_soal = $data_soal['keterangan']; // Menambahkan variabel keterangan_soal
+                echo "Status Anda telah diubah menjadi $status.<br>";
+                echo "Jawaban Benar: $jawaban_benar<br>";
+                echo "Jawaban Salah: $jawaban_salah<br>";
+                echo "Jawaban Kosong: $jawaban_kosong<br>";
+                echo "Status: $status<br>";
+            } else {
+                echo "Terjadi kesalahan dalam mengubah status: " . mysqli_error($connect);
+            }
+        } else {
+            echo "Terjadi kesalahan dalam mengupdate hasil ujian: " . mysqli_error($connect);
+        }
+    }
+} else {
+    echo "Anda harus login sebagai pelamar untuk mengakses halaman ini.";
+}
+?>
