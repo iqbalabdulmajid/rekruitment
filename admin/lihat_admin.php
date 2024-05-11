@@ -31,12 +31,12 @@ echo "
 	<div class='row'>
 				<div class='col-sm-6 col-sm-offsite-2'>
 					<a href='' class='rounded'>
-						<img src='../images/telkomlogo.png' style='max-height: 82px;'>
+						<img src='ocellus.JPG'>
 					</a>
 				</div>
 				<div class='col-sm-6'>
-					<h2 class='text-center'>PT TELKOM INDONESIA</h2>
-					<p class='text-center'>Jl. Jenderal Gatot Subroto Kav. 52, Kuningan Barat, Mampang Prapatan, Jakarta Selatan, Jakarta, Indonesia 12710</p>
+					<h2 class='text-center'>PT OCELLUS INDONESIA</h2>
+					<p class='text-center'>Jl.Pluit Karang Ayu Barat No.22 Pluit Jakarta Utara 10510</p>
 				</div>
 			</div>
 			<hr>
