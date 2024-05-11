@@ -41,7 +41,7 @@ if(@$_SESSION['admin']){
 <div class="container">
 
   <body style="background-color: transparent;">
-         <h1 align="center">Lihat Data</h1>
+         <h1 align="center">Lihat Karir</h1>
         <hr>
        
     
