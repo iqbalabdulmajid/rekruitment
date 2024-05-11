@@ -40,101 +40,77 @@ if(@$_SESSION['admin']){
 <div class="container">
 
   <body style="background-color: transparent;">
-        <h1 align="center">E-Contract</h1>
+         <h1 align="center">Lihat Data</h1>
         <hr>
+        <center>
+            <a href="view_plmr.php" class="btn btn-primary">Data Pelamar</a>
+            <a href="view_plmr_l.php" class="btn btn-primary">Data Pelamar Lulus</a>
+            <a href="view_plmr_tl.php" class="btn btn-primary">Data Pelamar Tidak Lulus</a>
+        </center>
+
+    
          <!--tabel-->
             <div class="row">
                 <div class="col-md-12">
-                <form method="GET" action="">
-                    <div class="form-group">
-                        <label for="stat">Filter Karyawan:</label>
-                        <select class="form-control" id="status" name="status">
-                        <option value="1" <?php if(!isset($_GET['status']) || (isset($_GET['status']) && $_GET['status'] == '1')) echo 'selected'; ?>>Tampilkan Semua</option>
-                        <option value="2" <?php if(isset($_GET['status']) && $_GET['status'] == '2') echo 'selected'; ?>>Karyawan Tetap</option>
-                        <option value="3" <?php if(isset($_GET['status']) && $_GET['status'] == '3') echo 'selected'; ?>>Karyawan Kontrak</option>
-                            <?php
-                            // Query untuk mendapatkan daftar status pegawai
-                            $query_status = "SELECT DISTINCT status_pegawai FROM pelamar";
-                            $sql_status = mysqli_query($connect, $query_status);
-
-                            while ($row_status = mysqli_fetch_array($sql_status)) {
-                              $selected = "";
-                              if (isset($_GET['status']) && $_GET['status'] == $row_status['status_pegawai']) {
-                                  $selected = "selected";
-                              }
-                              echo "<option value='" . $row_status['status_pegawai'] . "' $selected>" . $row_status['status_pegawai'] . "</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="margin-bottom:20px;">Filter</button>
-                </form>
-                    <table id="example" class="table table-responsive table-hover" cellspacing="0" width="100%" >
+                    <table id="example" class="table table-responsive table-hover" cellspacing="0" width="100%"  >
                          <thead>
                              <tr>
                                 <th>No</th>
-                                <th>NIK</th>
+                                <th>No. Pendaftaran</th>
                                 <th>Posisi Pekerjaan</th>
+                                <th>Lokasi Seleksi</th>
                                 <th>Nama Lengkap</th>
-                                <th>Awal Kontrak</th>
-                                <th>Akhir Kontrak</th>
-                                <th>Status Pegawai</th>                              
+                                <th>Pendidikan</th>
+                                <th>Asal Sekolah</th>
+                                <th>Jurusan</th>                              
                                 <th>Aksi</th>
                             </tr>
                            </thead>
                         <tbody>
                             
-                        <?php
-                        include "koneksi.php";
+                            <?php
+                            // Load file koneksi.php
+                            include "koneksi.php";
+                            
+                            $query = "SELECT * FROM master_pelamar"; // Query untuk menampilkan semua data lowongan
+                            $sql = mysqli_query($connect, $query); // Eksekusi/Jalankan query dari variabel $query
+                            
 
-                        // Set default filter
-                        $filter_status = "";
+                            $no = 1 ;
+                            while($data = mysqli_fetch_array($sql)){ // Ambil semua data dari hasil eksekusi $sql
 
-                        // Check if filter is applied
-                        if(isset($_GET['status'])) {
-                            $filter_status = $_GET['status'];
-                        }
+                            ?>
 
-                        $query = "SELECT * FROM pelamar WHERE (status_pegawai='karyawan tetap' OR status_pegawai='karyawan kontrak') ";
+                                <tr scope="row">
+                                    <td><?php echo $no; ?> </td>
+                                    <td><?php echo $data ['id_pelamar']; ?></td>
+                                    <td><?php echo $data ['posisi_pekerjaan']; ?></td>
+                                    <td><?php echo $data ['lokasi_seleksi']; ?></td>
+                                    <td><?php echo $data ['nama']; ?></td>
+                                    <td><?php echo $data ['pendidikan']; ?></td>
+                                    <td><?php echo $data ['nm_sekolah']; ?></td>
+                                    <td><?php echo $data ['jurusan']; ?></td>
+                                
+                                      <?php 
+                                       echo "<td>
+                                                  <a href='lihat_plmr.php?id_pelamar=".$data['id_pelamar']."'>Lihat |
+                                                  <a href = 'contract.php?id_pelamar=".$data['id_pelamar']."'>contract";
+                                        echo "</tr>";
+                                       ?>
+                                
 
-                        // Apply filter if any
-                        if($filter_status != "") {
-                            if($filter_status == "1") {
-                                // Tampilkan semua
-                                $query .= " AND status_pegawai != ''";
-                            } elseif ($filter_status == "2") {
-                                // Tampilkan yang lulus
-                                $query .= " AND status_pegawai = 'karyawan tetap'";
-                            } elseif ($filter_status == "3") {
-                                // Tampilkan yang tidak lulus
-                                $query .= " AND status_pegawai = 'karyawan kontrak'";
+                                <?php
+                               $no++;
                             }
-                        }
-
-                        $sql = mysqli_query($connect, $query);
-
-                        $no = 1;
-                        while($data = mysqli_fetch_array($sql)){
-                            echo "<tr scope='row'>";
-                            echo "<td>".$no."</td>";
-                            echo "<td>".$data ['nik']."</td>";
-                            echo "<td>".$data ['posisi_pekerjaan']."</td>";
-                            echo "<td>".$data ['nama']."</td>";
-                            echo "<td>".$data ['mulai_kontrak']."</td>";
-                            echo "<td>".$data ['akhir_kontrak']."</td>";
-                            echo "<td>".$data ['status_pegawai']."</td>";
-                            echo "<td>
-                                    <a href='lihat_plmr.php?id_pelamar=".$data['id_pelamar']."'>Lihat</a> | 
-                                    <a href='contract.php?id_pelamar=".$data['id_pelamar']."'>Contract</a>
-                                  </td>";
-                            echo "</tr>";
-                            $no++;
-                        }
-                        ?>
+                            ?>
                         </tbody>
                     </table>
                 </div>
             </div>
+
+
+                     
+        </table>
 </div>
 
 
@@ -157,9 +133,7 @@ if(@$_SESSION['admin']){
 
     <script> type="text/javascript"
       $(document).ready(function() {
-        $('#example').DataTable({
-            searching: true // Aktifkan fitur pencarian
-        });       
+        $('#example').DataTable();
       });
 </script>
 

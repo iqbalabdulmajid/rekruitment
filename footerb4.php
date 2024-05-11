@@ -1,7 +1,7 @@
 <style>
 	footer p{
-		padding-top: 15px;
-		padding-bottom: 15px;
+		padding-top: 30px;
+		padding-bottom: 30px;
 		margin-top: 30px;
 		color:white;
 	}

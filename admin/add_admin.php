@@ -192,7 +192,8 @@
             </div>
 
             <div class="form-group row">
-               <div class="col-sm-2"></div>
+               <div class="col-sm-2">
+              </div>
                 <div class="col-sm-10">
                   <input type="submit" class="btn btn-primary" name="simpan" value="Simpan">
                   <input type="reset" class="btn btn-danger" value="Hapus">

@@ -20,7 +20,7 @@ if(@$_SESSION['admin']){
   // jika $datakode
   if ($datakode) {
    // membuat variabel baru untuk mengambil kode barang mulai dari 1
-   $nilaikode = substr($datakode[0], 1);
+   $nilaikode = substr($jumlah_data[0], 1);
    // menjadikan $nilaikode ( int )
    $kode = (int) $nilaikode;
    // setiap $kode di tambah 1
@@ -216,22 +216,21 @@ if(@$_SESSION['admin']){
 			</div>
 		  </div> 
 
+
 		  <div class="form-group">
 			<div class="row">
+			
 				<div class="col-md-9">
 					<input type="hidden" class="form-control" name="nip" value="<?php echo $hasil['nip']; ?>" placeholder="">
 				</div>
 			</div>
 		  </div> 
 
-		  	<input type="hidden" name="view" value="aktif">
-			
-			<div class="form-group row">
-               <div class="col-sm-3"></div>
-                <div class="col-sm-9">
-                  <button type="submit" class="btn btn-primary" name="add_lwg">Tambah Karir</button>
-                </div>              
-            </div>
+		  			<input type="hidden" name="view" value="aktif">
+
+			<div class="form-group">
+				<button class="btn btn-primary btn-block" type="submit" name="add_lwg">Tambah Karir</button>
+		  	</div>  
 
 		</form>
 	</div>

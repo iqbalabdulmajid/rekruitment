@@ -4,7 +4,6 @@ session_start();
 if(@$_SESSION['admin']){
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,15 +14,15 @@ if(@$_SESSION['admin']){
     <title>Bootstrap 101 Template</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="bootstrap4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap4/css/custom.css">
+    <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../bootstrap4/css/custom.css">
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- datatables -->
-    <link rel="stylesheet" href="bootstrap4/css/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="bootstrap4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../bootstrap4/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../bootstrap4/css/dataTables.bootstrap4.min.css">
 
 
 
@@ -43,32 +42,37 @@ if(@$_SESSION['admin']){
   <body style="background-color: transparent;">
          <h1 align="center">Lihat Data</h1>
         <hr>
-       
+        <center>
+            <a href="view_plmr.php" class="btn btn-primary">Data Pelamar</a>
+            <a href="view_plmr_l.php" class="btn btn-primary">Data Pelamar Lulus</a>
+            <a href="view_plmr_tl.php" class="btn btn-primary">Data Pelamar Tidak Lulus</a>
+        </center>
+
     
          <!--tabel-->
             <div class="row">
                 <div class="col-md-12">
-                    <table id="example" class="table table-responsive table-hover" cellspacing="0" width="100%">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Posisi Pekerjaan</th>
-                                <th scope="col">Lokasi Seleksi</th>
-                                <th scope="col">Mulai Tanggal</th>
-                                <th scope="col">Berakhir Tanggal</th>
-                                <th scope="col">Lokasi Pekerjaan</th>
-                                <th scope="col">Penulis</th>
-                                <th scope="col">View</th>
-                                <th scope="col" width="80px">Aksi</th>
+                    <table id="example" class="table table-responsive table-hover" cellspacing="0" width="100%"  >
+                         <thead>
+                             <tr>
+                                <th>No</th>
+                                <th>No. Pendaftaran</th>
+                                <th>Posisi Pekerjaan</th>
+                                <th>Lokasi Seleksi</th>
+                                <th>Nama Lengkap</th>
+                                <th>Pendidikan</th>
+                                <th>Asal Sekolah</th>
+                                <th>Jurusan</th>                              
+                                <th>Aksi</th>
                             </tr>
-                        </thead>
+                           </thead>
                         <tbody>
                             
                             <?php
                             // Load file koneksi.php
                             include "koneksi.php";
                             
-                            $query = "SELECT * FROM lowongan"; // Query untuk menampilkan semua data lowongan
+                            $query = "SELECT * FROM master_pelamar where keterangan='Tidak Lulus'"; // Query untuk menampilkan semua data lowongan
                             $sql = mysqli_query($connect, $query); // Eksekusi/Jalankan query dari variabel $query
                             
 
@@ -79,22 +83,22 @@ if(@$_SESSION['admin']){
 
                                 <tr scope="row">
                                     <td><?php echo $no; ?> </td>
+                                    <td><?php echo $data ['id_pelamar']; ?></td>
                                     <td><?php echo $data ['posisi_pekerjaan']; ?></td>
                                     <td><?php echo $data ['lokasi_seleksi']; ?></td>
-                                    <td><?php echo $data ['tgl_mulai']; ?></td>
-                                    <td><?php echo $data ['tgl_selesai']; ?></td>
-                                    <td><?php echo $data ['lokasi_pekerjaan']; ?></td>
-                                    <td><?php echo $data ['nip']; ?></td>
-                                    <td><?php echo $data ['view']; ?></td>
-                                    <td>
+                                    <td><?php echo $data ['nama']; ?></td>
+                                    <td><?php echo $data ['pendidikan']; ?></td>
+                                    <td><?php echo $data ['nm_sekolah']; ?></td>
+                                    <td><?php echo $data ['jurusan']; ?></td>
+                                
                                       <?php 
-                                        echo "<a href='up_lwg.php?id_lowongan=".$data['id_lowongan']."'>Ubah | 
-                                              <a href='del_lwg.php?id_lowongan=".$data['id_lowongan']."'>Hapus</a>";
+                                       echo "<td>
+                                                  <a href='lihat_plmr_tl.php?id_pelamar=".$data['id_pelamar']."'>Lihat | 
+                                                  <a href='del_plmr.php?id_pelamar=".$data['id_pelamar']."'>Hapus</a></td><br>";
+                                        echo "</tr>";
                                        ?>
-                                    </td>
+                                
 
-                                    
-                                </tr>
                                 <?php
                                $no++;
                             }
@@ -114,9 +118,9 @@ if(@$_SESSION['admin']){
 
 <!-- jquery package -->
     
-    <script src="bootstrap4/js/bootstrap.min.js"></script>
-    <script src="bootstrap4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="bootstrap4/js/dataTables.bootstrap4.js"></script>
+    <script src="../bootstrap4/js/bootstrap.min.js"></script>
+    <script src="../bootstrap4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../bootstrap4/js/dataTables.bootstrap4.js"></script>
 
 
 <!--     <script src="bootstrap4/datatables/jquery.dataTables.min.js"></script>
