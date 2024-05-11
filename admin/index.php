@@ -10,7 +10,7 @@ if(@$_SESSION['admin']){
 <head>
     <meta charset="utf-8">
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
-    <title>Recruitment OCELLUS</title>
+    <title>Recruitment SiRekTa</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css">
     <link rel="stylesheet" href="../bootstrap4/css/style1.css" type="text/css">
@@ -61,33 +61,24 @@ if(@$_SESSION['admin']){
                     </li>
 
                     <li>
-                        <a target="iframe_a" style="color: white;"><i class="fa fa-file-text-o" aria-hidden="true"></i><span style="margin-left:10px;">Master Ujian</span>  </a>
-                        <ul style="color: white; list-style-type: none; margin-left: 10px;">
-                          <li><a target="iframe_a" href="add_soal.php">Tambah Soal</a></li>
-                          <li><a target="iframe_a" href="view_soal.php">Lihat Soal</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a target="iframe_a" style="color: white;"><i class="fa fa-users" aria-hidden="true"></i> <span style="margin-left:10px;">Master Pelamar</span>  </a>
-                        <ul style="color: white; list-style-type: none; margin-left: 10px;">
-                          <li><a target="iframe_a" href="view_plmr.php">List Pelamar</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a target="iframe_a" style="color: white;"><i class="fa fa-briefcase" aria-hidden="true"></i> <span style="margin-left:10px;">Master Karir</span>  </a>
-                        <ul style="color: white; list-style-type: none; margin-left: 10px;">
-                          <li><a target="iframe_a" href="add_lwg.php">Tambah Karir</a></li>
-                          <li><a target="iframe_a" href="view_lwg.php">Lihat Karir</a></li>
-                        </ul>
-                    </li>
-                   
-                    <li>
                         <a target="iframe_a" style="color: white;"><i class="fa fa-briefcase" aria-hidden="true"></i> <span style="margin-left:10px;">HrMista</span>  </a>
                         <ul style="color: white; list-style-type: none; margin-left: 10px;">
-                          <li><a target="iframe_a" href="hasil_test.php">Employe Management</a></li>
+                          <li><a target="iframe_a" href="employee.php">EM</a></li>
                           <li><a target="iframe_a" href="e-contract.php">E-contrcat</a></li>
+                          <li><a target="iframe_a" href="add_lwg.php">Tambah Karir</a></li>
+                          <li><a target="iframe_a" href="view_lwg.php">Lihat Karir</a></li>
+                          <li><a target="iframe_a" href="view_plmr.php">Data Pelamar</a></li>  
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a target="iframe_a" style="color: white;"><i class="fa fa-file-text-o" aria-hidden="true"></i><span style="margin-left:10px;">Rekruitmen</span>  </a>
+                        <ul style="color: white; list-style-type: none; margin-left: 10px;">
+                          <li><a target="iframe_a" href="">Seleksi Berkas</a></li>
+                          <li><a target="iframe_a" href="add_soal.php">Tambah Soal</a></li>
+                          <li><a target="iframe_a" href="view_soal.php">Lihat Soal</a></li>  
+                          <li><a target="iframe_a" href="">Tes Fisik</a></li>
+                          <li><a target="iframe_a" href="">Wawancara</a></li>
                         </ul>
                     </li>
                    
@@ -111,7 +102,7 @@ if(@$_SESSION['admin']){
         </div>
 
         <div class="text-center">
-           <p>&copy; copyright 2017 | Ocellus Indonesia by. <a href="#">Mahasiswi AMIK BSI</a> </p>
+           <p>&copy; copyright 2024 | Telkom Indonesia<a href="#"></a> </p>
         </div>
 
 
@@ -131,13 +122,22 @@ if(@$_SESSION['admin']){
         $("#wrapper").toggleClass("active");
     });
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('li').click(function(){
+                $('ul', this).stop().slideToggle(200);
+            });
+            $('ul li').click(function(e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
 
     
   </div>
 </div>
-<script type="text/javascript">
-
-</script>
+<script type="text/javascript"></script>
 </body>
 </html>
 
