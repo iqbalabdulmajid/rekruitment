@@ -31,16 +31,16 @@ echo "
   <div class='container'>
   <br>  
   <div class='row'>
-    <div class='col-sm-6 col-sm-offsite-2'>
-      <a href='' class='rounded'>
-        <img src='ocellus.JPG'>
-      </a>
-    </div>
-    <div class='col-sm-6'>
-      <h2 class='text-center'>PT OCELLUS INDONESIA</h2>
-      <p class='text-center'>Jl.Pluit Karang Ayu Barat No.22 Pluit Jakarta Utara 10510</p>
-    </div>
+  <div class='col-sm-6 d-flex align-items-center justify-content-center'>
+    <a href='#' class='rounded'>
+      <img src='telkom.png' style='width: 100px; height: auto;'>
+    </a>
   </div>
+  <div class='col-sm-6'>
+    <h2 class='text-center'>PT OCELLUS INDONESIA</h2>
+    <p class='text-center'>Jl.Pluit Karang Ayu Barat No.22 Pluit Jakarta Utara 10510</p>
+  </div>
+</div>
   <hr>
   <br>
 

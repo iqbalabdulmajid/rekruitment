@@ -33,7 +33,7 @@ echo "
 	<div class='row'>
 		<div class='col-sm-4 col-sm-offsite-2'>
 			<a href='' class='rounded'>
-				<img src='ocellus.JPG'>
+				<img src='telkom.png' style='max-width: 10%'>
 			</a>
 		</div>
 		<div class='col-sm-6'>
