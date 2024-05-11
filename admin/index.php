@@ -19,15 +19,8 @@ if(@$_SESSION['admin']){
 </head>
 <body style="background-image: url(../bootstrap4/img/bg.png");">   
 <!-- navigation -->
-
-
-<?php 
-  
-  include"navbarb4.php";
-
- ?>
-
-<div class="pembatas" style="margin-bottom: -30px;">
+<?php include "navbarb4.php"; ?>
+    <div class="pembatas" style="margin-bottom: 91px;"></div>
   
 </div>
 

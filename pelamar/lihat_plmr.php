@@ -31,13 +31,13 @@ echo "
   <div class='container'>
   <br>  
   <div class='row'>
-  <div class='col-sm-6 d-flex align-items-center justify-content-center'>
+  <div class='col-sm-6 d-flex align-items-left justify-content-left'>
     <a href='#' class='rounded'>
-      <img src='telkom.png' style='width: 100px; height: auto;'>
+      <img src='telkom.png' style='width: 350px; margin-block: -100px; height: auto;'>
     </a>
   </div>
   <div class='col-sm-6'>
-    <h2 class='text-center'>PT OCELLUS INDONESIA</h2>
+    <h2 class='text-center'>PT TELKOM INDONESIA</h2>
     <p class='text-center'>Jl.Pluit Karang Ayu Barat No.22 Pluit Jakarta Utara 10510</p>
   </div>
 </div>
