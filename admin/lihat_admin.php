@@ -29,16 +29,16 @@ echo "
   <div class='container'>
 	<hr>	
 	<div class='row'>
-	<div class='col-sm-6 d-flex align-items-center justify-content-center'>
-	  <a href='#' class='rounded'>
-		<img src='telkom.png' style='width: 100px; height: auto;'>
-	  </a>
-	</div>
-	<div class='col-sm-6'>
-	  <h2 class='text-center'>PT OCELLUS INDONESIA</h2>
-	  <p class='text-center'>Jl.Pluit Karang Ayu Barat No.22 Pluit Jakarta Utara 10510</p>
-	</div>
-	</div>
+				<div class='col-sm-6 col-sm-offsite-2'>
+					<a href='' class='rounded'>
+						<img src='../images/telkomlogo.png' style='max-height: 82px;'>
+					</a>
+				</div>
+				<div class='col-sm-6'>
+					<h2 class='text-center'>PT TELKOM INDONESIA</h2>
+					<p class='text-center'>Jl. Jenderal Gatot Subroto Kav. 52, Kuningan Barat, Mampang Prapatan, Jakarta Selatan, Jakarta, Indonesia 12710</p>
+				</div>
+			</div>
 			<hr>
 			<br>
 

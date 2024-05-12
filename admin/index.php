@@ -21,8 +21,14 @@ if(@$_SESSION['admin']){
 <!-- navigation -->
 
 
-<?php include "navbarb4.php"; ?>
-    <div class="pembatas" style="margin-bottom: 90px;"></div>
+<?php 
+  
+  include"navbarb4.php";
+
+ ?>
+
+<div class="pembatas" style="margin-bottom: -30px;">
+  
 </div>
 
 <?php 

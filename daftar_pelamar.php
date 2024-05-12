@@ -8,6 +8,19 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <style>
+      footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        padding: 20px 0;
+      }
+
+      footer p {
+        margin: 0;
+        color: white;
+      }
+    </style>
   </head>
 <body style="background-image: url(bootstrap4/img/bg.png");">
 

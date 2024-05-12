@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-transparent fixed-top">
-  <a class="navbar-brand" href="#"><a href="https://logowik.com/telkom-indonesia-logo-vector-svg-pdf-ai-eps-cdr-free-download-17650.html"><img src="images/telkom.png" style="max-width: 100px; background-color:transparent;"></a>
+  <a class="navbar-brand" href="#"><a href=""><img src="images/telkomlogo.png" style="max-width: 150px; background-color:transparent;"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -33,7 +33,7 @@
   }
 
   body {
-    padding-top: 70px;
+    padding-top: 50px;
   }
 </style>
 
