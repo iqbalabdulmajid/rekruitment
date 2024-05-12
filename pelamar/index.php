@@ -8,7 +8,7 @@ if (@$_SESSION['pelamar']) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Recruitment Telkom</title>
+    <title>Recruitment OCELLUS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css">
     <link rel="stylesheet" href="../bootstrap4/css/style1.css" type="text/css">
@@ -18,7 +18,7 @@ if (@$_SESSION['pelamar']) {
 <body style="background-image: url(../bootstrap4/img/bg.png);">
     <!-- Navigation -->
     <?php include "navbarb4.php"; ?>
-    <div class="pembatas" style="margin-bottom: 91px;"></div>
+    <div class="pembatas" style="margin-bottom: 60px;"></div>
     <?php
     include "koneksi.php";
     $caridata = mysqli_query($connect, "SELECT username from pelamar where id_pelamar='$id_pelamar'");
@@ -71,7 +71,7 @@ if (@$_SESSION['pelamar']) {
     </div>
 
     <div class="text-center">
-        <p>&copy; 2024 <a href="#">Telkom Indonesia</a></p>
+        <p>&copy; 2024 <a href="#">Telkom Indonesi</a></p>
     </div>
 
     <script>

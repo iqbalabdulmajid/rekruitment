@@ -40,29 +40,29 @@ if(@$_SESSION['admin']){
 <div class="container">
 
   <body style="background-color: transparent;">
-        <h1 align="center">Data Pelamar</h1>
+        <h1 align="center">Employee Management</h1>
         <hr>
          <!--tabel-->
             <div class="row">
                 <div class="col-md-12">
                 <form method="GET" action="">
                     <div class="form-group">
-                        <label for="lokasi">Filter Keterangan:</label>
-                        <select class="form-control" id="ket" name="ket">
-                        <option value="1" <?php if(!isset($_GET['ket']) || (isset($_GET['ket']) && $_GET['ket'] == '1')) echo 'selected'; ?>>Tampilkan Semua</option>
-                        <option value="2" <?php if(isset($_GET['ket']) && $_GET['ket'] == '2') echo 'selected'; ?>>Lulus</option>
-                        <option value="3" <?php if(isset($_GET['ket']) && $_GET['ket'] == '3') echo 'selected'; ?>>Tidak Lulus</option>
+                        <label for="stat">Filter Karyawan:</label>
+                        <select class="form-control" id="status" name="status">
+                        <option value="1" <?php if(!isset($_GET['status']) || (isset($_GET['status']) && $_GET['status'] == '1')) echo 'selected'; ?>>Tampilkan Semua</option>
+                        <option value="2" <?php if(isset($_GET['status']) && $_GET['status'] == '2') echo 'selected'; ?>>Karyawan Tetap</option>
+                        <option value="3" <?php if(isset($_GET['status']) && $_GET['status'] == '3') echo 'selected'; ?>>Karyawan Kontrak</option>
                             <?php
-                            // Query untuk mendapatkan daftar keterangan
-                            $query_ket = "SELECT DISTINCT keterangan FROM master_pelamar";
-                            $sql_ket = mysqli_query($connect, $query_ket);
+                            // Query untuk mendapatkan daftar status pegawai
+                            $query_status = "SELECT DISTINCT status_pegawai FROM pelamar";
+                            $sql_status = mysqli_query($connect, $query_status);
 
-                            while ($row_ket = mysqli_fetch_array($sql_ket)) {
+                            while ($row_status = mysqli_fetch_array($sql_status)) {
                               $selected = "";
-                              if (isset($_GET['ket']) && $_GET['ket'] == $row_ket['keterangan']) {
+                              if (isset($_GET['status']) && $_GET['status'] == $row_status['status_pegawai']) {
                                   $selected = "selected";
                               }
-                              echo "<option value='" . $row_ket['keterangan'] . "' $selected>" . $row_ket['keterangan'] . "</option>";
+                              echo "<option value='" . $row_status['status_pegawai'] . "' $selected>" . $row_status['status_pegawai'] . "</option>";
                             }
                             ?>
                         </select>
@@ -73,11 +73,12 @@ if(@$_SESSION['admin']){
                          <thead>
                              <tr>
                                 <th>No</th>
-                                <th>No. Pendaftaran</th>
+                                <th>Id</th>
+                                <th>NIK</th>
                                 <th>Posisi Pekerjaan</th>
-                                <th>Lokasi Seleksi</th>
+                                <th>Penempatan</th>
                                 <th>Nama Lengkap</th>
-                                <th>Keterangan</th>                              
+                                <th>Status Pegawai</th>                              
                                 <th>Aksi</th>
                             </tr>
                            </thead>
@@ -87,26 +88,26 @@ if(@$_SESSION['admin']){
                         include "koneksi.php";
 
                         // Set default filter
-                        $filter_keterangan = "";
+                        $filter_status = "";
 
                         // Check if filter is applied
-                        if(isset($_GET['ket'])) {
-                            $filter_keterangan = $_GET['ket'];
+                        if(isset($_GET['status'])) {
+                            $filter_status = $_GET['status'];
                         }
 
-                        $query = "SELECT * FROM master_pelamar WHERE 1";
+                        $query = "SELECT * FROM pelamar WHERE (status_pegawai='karyawan tetap' OR status_pegawai='karyawan kontrak') ";
 
                         // Apply filter if any
-                        if($filter_keterangan != "") {
-                            if($filter_keterangan == "1") {
+                        if($filter_status != "") {
+                            if($filter_status == "1") {
                                 // Tampilkan semua
-                                $query .= " AND keterangan != ''";
-                            } elseif ($filter_keterangan == "2") {
+                                $query .= " AND status_pegawai != ''";
+                            } elseif ($filter_status == "2") {
                                 // Tampilkan yang lulus
-                                $query .= " AND keterangan = 'Lulus'";
-                            } elseif ($filter_keterangan == "3") {
+                                $query .= " AND status_pegawai = 'karyawan tetap'";
+                            } elseif ($filter_status == "3") {
                                 // Tampilkan yang tidak lulus
-                                $query .= " AND keterangan = 'Tidak Lulus'";
+                                $query .= " AND status_pegawai = 'karyawan kontrak'";
                             }
                         }
 
@@ -117,10 +118,11 @@ if(@$_SESSION['admin']){
                             echo "<tr scope='row'>";
                             echo "<td>".$no."</td>";
                             echo "<td>".$data ['id_pelamar']."</td>";
+                            echo "<td>".$data ['nik']."</td>";
                             echo "<td>".$data ['posisi_pekerjaan']."</td>";
                             echo "<td>".$data ['lokasi_seleksi']."</td>";
                             echo "<td>".$data ['nama']."</td>";
-                            echo "<td>".$data ['keterangan']."</td>";
+                            echo "<td>".$data ['status_pegawai']."</td>";
                             echo "<td>
                                     <a href='lihat_plmr.php?id_pelamar=".$data['id_pelamar']."'>Lihat</a> | 
                                     <a href='del_plmr.php?id_pelamar=".$data['id_pelamar']."'>Hapus</a>
