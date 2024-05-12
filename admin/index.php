@@ -64,7 +64,7 @@ if(@$_SESSION['admin']){
                         <a target="iframe_a" style="color: white;"><i class="fa fa-briefcase" aria-hidden="true"></i> <span style="margin-left:10px;">HrMista</span>  </a>
                         <ul style="color: white; list-style-type: none; margin-left: 10px;">
                           <li><a target="iframe_a" href="employee.php">EM</a></li>
-                          <li><a target="iframe_a" href="e-contract.php">E-contrcat</a></li>
+                          <li><a target="iframe_a" href="e-contract.php">E-contract</a></li>
                           <li><a target="iframe_a" href="add_lwg.php">Tambah Karir</a></li>
                           <li><a target="iframe_a" href="view_lwg.php">Lihat Karir</a></li>
                           <li><a target="iframe_a" href="view_plmr.php">Data Pelamar</a></li>  

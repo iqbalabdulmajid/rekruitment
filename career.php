@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Recruitment OCELLUS</title>
+	<title>Recruitment SiRekTa</title>
 
 	<link rel="stylesheet" href="bootstrap4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="bootstrap4/css/custom.css">

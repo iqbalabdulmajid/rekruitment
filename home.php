@@ -23,7 +23,7 @@
 </head>
 <body>
 
-<h2 class="atas">OCELLUS INDONESIA</h2>
+<h2 class="atas">TELKOM INDONESIA</h2>
 <hr>
 <br />
 	<div class="gambar">
