@@ -28,7 +28,7 @@
 }
 </style>
 <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-transparent">
-  <a class="navbar-brand" href="#"><a href="https://logowik.com/telkom-indonesia-logo-vector-svg-pdf-ai-eps-cdr-free-download-17650.html"><img src="telkom.png" style="max-width: 100px; background-color:transparent;"></a></a>
+  <a class="navbar-brand" href="#"><img src="telkom.png" style="max-width: 100px; background-color:transparent;"></a></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
