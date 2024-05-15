@@ -45,30 +45,6 @@ if(@$_SESSION['admin']){
          <!--tabel-->
             <div class="row">
                 <div class="col-md-12">
-                <form method="GET" action="">
-                    <div class="form-group">
-                        <label for="stat">Filter Karyawan:</label>
-                        <select class="form-control" id="status" name="status">
-                        <option value="1" <?php if(!isset($_GET['status']) || (isset($_GET['status']) && $_GET['status'] == '1')) echo 'selected'; ?>>Tampilkan Semua</option>
-                        <option value="2" <?php if(isset($_GET['status']) && $_GET['status'] == '2') echo 'selected'; ?>>Karyawan Tetap</option>
-                        <option value="3" <?php if(isset($_GET['status']) && $_GET['status'] == '3') echo 'selected'; ?>>Karyawan Kontrak</option>
-                            <?php
-                            // Query untuk mendapatkan daftar status pegawai
-                            $query_status = "SELECT DISTINCT status_pegawai FROM pelamar";
-                            $sql_status = mysqli_query($connect, $query_status);
-
-                            while ($row_status = mysqli_fetch_array($sql_status)) {
-                              $selected = "";
-                              if (isset($_GET['status']) && $_GET['status'] == $row_status['status_pegawai']) {
-                                  $selected = "selected";
-                              }
-                              echo "<option value='" . $row_status['status_pegawai'] . "' $selected>" . $row_status['status_pegawai'] . "</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="margin-bottom:20px;">Filter</button>
-                </form>
                     <table id="example" class="table table-responsive table-hover" cellspacing="0" width="100%" >
                          <thead>
                              <tr>
@@ -87,29 +63,9 @@ if(@$_SESSION['admin']){
                         <?php
                         include "koneksi.php";
 
-                        // Set default filter
-                        $filter_status = "";
-
-                        // Check if filter is applied
-                        if(isset($_GET['status'])) {
-                            $filter_status = $_GET['status'];
-                        }
-
-                        $query = "SELECT * FROM pelamar WHERE (status_pegawai='karyawan tetap' OR status_pegawai='karyawan kontrak') ";
-
-                        // Apply filter if any
-                        if($filter_status != "") {
-                            if($filter_status == "1") {
-                                // Tampilkan semua
-                                $query .= " AND status_pegawai != ''";
-                            } elseif ($filter_status == "2") {
-                                // Tampilkan yang lulus
-                                $query .= " AND status_pegawai = 'karyawan tetap'";
-                            } elseif ($filter_status == "3") {
-                                // Tampilkan yang tidak lulus
-                                $query .= " AND status_pegawai = 'karyawan kontrak'";
-                            }
-                        }
+                        $query = "SELECT p.id_pelamar, p.nik, p.posisi_pekerjaan, p.lokasi_seleksi, p.nama, e.status_pegawai
+                                    FROM pelamar p
+                                    LEFT JOIN econtract e ON p.nik = e.nik WHERE (e.status_pegawai='karyawan tetap' OR e.status_pegawai='karyawan kontrak') ";
 
                         $sql = mysqli_query($connect, $query);
 
@@ -124,8 +80,7 @@ if(@$_SESSION['admin']){
                             echo "<td>".$data ['nama']."</td>";
                             echo "<td>".$data ['status_pegawai']."</td>";
                             echo "<td>
-                                    <a href='lihat_plmr.php?id_pelamar=".$data['id_pelamar']."'>Lihat</a> | 
-                                    <a href='del_plmr.php?id_pelamar=".$data['id_pelamar']."'>Hapus</a>
+                                    <a href='lihat_plmr.php?id_pelamar=".$data['id_pelamar']."'>Lihat</a>
                                   </td>";
                             echo "</tr>";
                             $no++;

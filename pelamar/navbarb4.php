@@ -47,6 +47,9 @@
     <span class="nav-item">
       <a href="logout.php" style="color:black;"> Logout</a>
     </span>
+    <span class="nav-item">
+     <p><? echo '$id_pelamar' ;?></p>
+    </span>
   </div>
 </nav>
 <script>

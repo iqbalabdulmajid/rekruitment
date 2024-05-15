@@ -33,12 +33,12 @@ echo "
   <div class='row'>
     <div class='col-sm-6 col-sm-offsite-2'>
       <a href='' class='rounded'>
-        <img src='ocellus.JPG'>
+        <img src='../images/telkom.png' style='max-height: 82px;'>
       </a>
     </div>
     <div class='col-sm-6'>
-      <h2 class='text-center'>PT OCELLUS INDONESIA</h2>
-      <p class='text-center'>Jl.Pluit Karang Ayu Barat No.22 Pluit Jakarta Utara 10510</p>
+      <h2 class='text-center'>PT TELKOM INDONESIA</h2>
+      <p class='text-center'>Jl. Jenderal Gatot Subroto Kav. 52, Kuningan Barat, Mampang Prapatan, Jakarta Selatan, Jakarta, Indonesia 12710</p>
     </div>
   </div>
   <hr>
@@ -388,8 +388,17 @@ echo "
         </tr> 
     
     </table> 
+    <br><br>
+    <h3>Dokumen</h3>
     <hr>
-    <br>
+    <p>Silakan download file <a href='../pelamar/uploads/".$data['dokumen']."'>dokumen</a> berikut untuk melihatnya.</p>
+
+    
+    <br><br>
+    <h3>Sertifikat</h3>
+    <hr>
+    <p>Silakan download file <a href='../pelamar/uploads/".$data['file_sertifikat']."'>sertifikat</a> berikut untuk melihatnya.</p>
+    
   </div>
   <div class='col-md-6'>
   <div class='container text-center'>

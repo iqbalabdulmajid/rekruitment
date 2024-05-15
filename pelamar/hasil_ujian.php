@@ -1,162 +1,158 @@
 <?php
 error_reporting(0);
-
 session_start();
 //cek level user
-if(@$_SESSION['pelamar']){
-	$id_pelamar = $_GET['id_pelamar'];
+if (@$_SESSION['pelamar']) {
+    $id_pelamar = $_GET['id_pelamar'];
 
-	include "koneksi.php";
+    include "koneksi.php";
 
-	if(isset($_POST['submit'])){
-		$pilihan = $_POST["pilihan"];
-		$id_soal = $_POST["id"];
-		$jumlah = $_POST['jumlah'];
+    if (isset($_POST['submit'])) {
+        $pilihan = $_POST["pilihan"];
+        $id_soal = $_POST["id"];
+        $jumlah = $_POST['jumlah'];
 
-		$score = 0;
-		$benar = 0;
-		$salah = 0;
-		$kosong = 0;
+        $score = 0;
+        $benar = 0;
+        $salah = 0;
+        $kosong = 0;
 
-		for ($i = 0; $i < $jumlah; $i++){
-			//id nomor soal
-			$nomor = $id_soal[$i];
+        for ($i = 0; $i < $jumlah; $i++) {
+            //id nomor soal
+            $nomor = $id_soal[$i];
 
-			//jika user tidak memilih jawaban
-			if (empty($pilihan[$nomor])){
-				$kosong++;
-			}else{
-				//jawaban dari user
-				$jawaban = $pilihan[$nomor];
+            //jika user tidak memilih jawaban
+            if (empty($pilihan[$nomor])) {
+                $kosong++;
+            } else {
+                //jawaban dari user
+                $jawaban = $pilihan[$nomor];
 
-				//cocokan jawaban user dengan jawaban di database
-				$query = mysqli_query($connect, "SELECT * FROM tbl_soal WHERE id_soal='$nomor' AND knc_jawaban='$jawaban'");
+                //cocokan jawaban user dengan jawaban di database
+                $query = mysqli_query($connect, "SELECT * FROM tbl_soal WHERE id_soal='$nomor' AND knc_jawaban='$jawaban'");
 
-				$cek = mysqli_num_rows($query);
+                $cek = mysqli_num_rows($query);
 
-				if($cek){
-					//jika jawaban cocok (benar)
-					$benar++;
-				}else{
-					//jika salah
-					$salah++;
-				}
-			} 
-		}
+                if ($cek) {
+                    //jika jawaban cocok (benar)
+                    $benar++;
+                } else {
+                    //jika salah
+                    $salah++;
+                }
+            }
+        }
 
-		/*RUMUS
-		Jika anda ingin mendapatkan Nilai 100, berapapun jumlah soal yang ditampilkan 
-		hasil= 100 / jumlah soal * jawaban yang benar
-		*/
-		$result = mysqli_query($connect, "SELECT * FROM tbl_soal WHERE aktif='Y'");
-		$jumlah_soal = mysqli_num_rows($result);
-		$score = 100 / $jumlah_soal * $benar;
-		$hasil = number_format($score, 1);
+        /*RUMUS
+        Jika anda ingin mendapatkan Nilai 100, berapapun jumlah soal yang ditampilkan 
+        hasil= 100 / jumlah soal * jawaban yang benar
+        */
+        $result = mysqli_query($connect, "SELECT * FROM tbl_soal WHERE aktif='Y'");
+        $jumlah_soal = mysqli_num_rows($result);
+        $score = 100 / $jumlah_soal * $benar;
+        $hasil = number_format($score, 1);
 
-		$db = mysqli_query($connect, "SELECT * FROM master_pelamar WHERE id_pelamar='$id_pelamar'");
-		$data = mysqli_fetch_array($db);
+        // hanya untuk tampil
+        $keterangan = ($score >= 70) ? "Lulus" : "Tidak Lulus";
 
-		// Menampilkan hasil ujian
-		echo "
-			<!doctype html>
-			<html lang='en'>
-			  <head>
-			    <title>Hello, world!</title>
-			    <!-- Required meta tags -->
-			    <meta charset='utf-8'>
-			    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+        echo "
+            <!doctype html>
+            <html lang='en'>
+              <head>
+                <title>Hasil Ujian</title>
+                <!-- Required meta tags -->
+                <meta charset='utf-8'>
+                <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
 
-			    <!-- Bootstrap CSS -->
-			    <link rel='stylesheet' href='../bootstrap4/css/bootstrap.min.css'>
-			  </head>
-			  <body style='background:transparent;'>
+                <!-- Bootstrap CSS -->
+                <link rel='stylesheet' href='../bootstrap4/css/bootstrap.min.css'>
+              </head>
+              <body style='background:transparent;'>
 
-			    <div class='container' style='margin-top: 5%;'>
-			      <div class='row'>
-			        <div class='col-md-6 offset-md-3'>
-			                <h1>Hasil Ujian</h1>
+                <div class='container' style='margin-top: 5%;'>
+                  <div class='row'>
+                    <div class='col-md-6 offset-md-3'>
+                      <h1>Hasil Ujian</h1>
+                      <form action='' method='POST'>
 
-			          <form action='' method='POST'>
+                        <table border='0'>
+                          <tr>
+                            <td width='220'>ID Pelamar</td>
+                            <td width='10'>:</td>
+                            <td>$id_pelamar</td>
+                          </tr>
+                          <tr height='10'></tr>
+                          <tr>
+                            <td>Jawaban Benar</td>
+                            <td width='10'>:</td>
+                            <td>$benar</td>
+                          </tr>
+                          <tr height='10'></tr>
+                          <tr>
+                            <td>Jawaban Salah</td>
+                            <td width='10'>:</td>
+                            <td>$salah</td>
+                          </tr>
+                          <tr height='10'></tr>
+                          <tr>
+                            <td>Jawaban Kosong</td>
+                            <td width='10'>:</td>
+                            <td>$kosong</td>
+                          </tr>
+                          <tr height='10'></tr>
+                          <tr>
+                            <td>Total Score</td>
+                            <td width='10'>:</td>
+                            <td>$score</td>
+                          </tr>
+                          <tr height='10'></tr>
+                          <tr>
+                            <td>Status Ujian</td>
+                            <td width='10'>:</td>
+                            <td>$keterangan</td>
+                          </tr>
+                        </table><br>
+                        <input type='hidden' name='benar' value='$benar' readonly>
+                        <input type='hidden' name='salah' value='$salah' readonly>
+                        <input type='hidden' name='kosong' value='$kosong' readonly>
+                        <input type='hidden' name='score' value='$score' readonly>
+                        <input type='hidden' name='id_pelamar' value='$id_pelamar' readonly>
+                        <input type='submit' class='btn btn-primary' value='Selesai' name='simpan'>
+                      </form>
+                      <a href='ujian.php' class='btn btn-primary'>Kembali</a>
+                    </div>
+                  </div>
+                </div>
 
-			            <table border='0'>
+                <!-- Optional JavaScript -->
+                <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                <script src='https://code.jquery.com/jquery-3.2.1.slim.min.js' integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN' crossorigin='anonymous'></script>
+                <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js' integrity='sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh' crossorigin='anonymous'></script>
+                <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js' integrity='sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ' crossorigin='anonymous'></script>
+              </body>
+            </html>
+        ";
+    }
 
-			              <tr>
-			                <td width='220'>ID Pelamar</td>
-			                <td width='10'>:</td>
-			                <td>$id_pelamar</td>
-			              </tr>
+    if (isset($_POST['simpan'])) {
+        $id_pelamar = $_POST['id_pelamar'];
+        $benar = $_POST['benar'];
+        $salah = $_POST['salah'];
+        $kosong = $_POST['kosong'];
+        $score = $_POST['score'];
+        $tgl_ujian = date("Y-m-d H:i:s");
+        $jenis_soal = "Umum";
+        $keterangan = ($score >= 70) ? "Lulus" : "Tidak Lulus";
 
-			              <tr height='10'></tr>
+        $queryinsert = mysqli_query($connect, "INSERT INTO tbl_nilai (id_pelamar, jawaban_benar, jawaban_salah, jawaban_kosong, score, jenis_soal, tgl_ujian, keterangan) VALUES ('$id_pelamar', '$benar', '$salah', '$kosong', '$score', '$jenis_soal', '$tgl_ujian', '$keterangan')");
 
-			              <tr>
-			                <td>Jawaban Benar</td>
-			                <td width='10'>:</td>
-			                <td>$benar</td>
-			              </tr>
-
-			              <tr height='10'></tr>
-
-			              <tr>
-			                <td>Jawaban Salah</td>
-			                <td width='10'>:</td>
-			                <td>$salah</td>
-			              </tr>
-
-			              <tr height='10'></tr>
-
-			              <tr>
-			                <td>Jawaban Kosong</td>
-			                <td width='10'>:</td>
-			                <td>$kosong</td>
-			              </tr>
-
-			              <tr height='10'></tr>
-
-			              <tr>
-			                <td>Total Score</td>
-			                <td width='10'>:</td>
-			                <td>$score</td>
-			              </tr>
-
-			              <tr height='10'></tr>
-
-			              <tr>
-			                <td>Status Ujian</td>
-			                <td width='10'>:</td>
-			                <td>$keterangan</td>
-			              </tr>
-			            </table><br>
-
-			            <input type='hidden' name='id_pelamar' value='$id_pelamar' readonly>
-			            <input type='hidden' name='benar' value='$benar' readonly>
-			            <input type='hidden' name='salah' value='$salah' readonly>
-			            <input type='hidden' name='kosong' value='$kosong' readonly>
-			            <input type='hidden' name='score' value='$score' readonly>
-			            <input type='hidden' name='keterangan' value='$keterangan' readonly>
-
-						<button type='submit' name='simpan' class='btn btn-primary'>Selesai</button>
-			            <a href='ujian.php' class='btn btn-primary'>Kembali</a>
-
-			          </form>
-			        </div>
-			      </div>
-			    </div>
-
-			    <!-- Optional JavaScript -->
-			    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-			    <script src='../bootstrap4/js/jquery.min.js'></script>
-			    <script src='../bootstrap4/js/popper.min.js'></script>
-			    <script src='../bootstrap4/js/bootstrap.min.js'></script>
-			  </body>
-			</html>
-		";
-
-		// Simpan hasil ujian ke dalam database
-		mysqli_query($connect, "INSERT INTO tbl_nilai(id_pelamar, jawaban_benar, jawaban_salah, jawaban_kosong, score) VALUES('$id_pelamar', '$benar', '$salah', '$kosong', '$score')");
-	}else{
-		unset($_POST['submit']);
-	}
-}else{
-	header("location:index.php");
+        if ($queryinsert) {
+            header("Location: ujian_psikotes.php");
+        } else {
+            echo "Error: " . mysqli_error($connect);
+        }
+    }
+} else {
+    echo "anda bukan pelamar";
 }
 ?>
