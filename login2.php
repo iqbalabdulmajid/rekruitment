@@ -1,19 +1,20 @@
 <?php
 session_start();
 
-if(isset($_SESSION['admin'])) {
-    header("Location: admin/");
-    exit;
-}
-
-if(isset($_SESSION['pelamar'])) {
-    header("Location: pelamar/");
-    exit;
-}
-
-if(isset($_SESSION['head_office'])) {
-    header("Location: head_office/");
-    exit;
+// Cek apakah session sudah ada
+if (isset($_SESSION['admin']) || isset($_SESSION['pelamar']) || isset($_SESSION['head_office'])) {
+    // Cek apakah session sudah kadaluarsa (lebih dari 60 menit)
+    if (time() - $_SESSION['last_activity'] > 3600) { // 60 menit = 3600 detik
+        // Hapus session
+        session_unset();
+        session_destroy();
+        echo "<script>alert('Sesi Anda telah kadaluarsa, silakan login kembali.')</script>";
+        header("Location: index.php");
+        exit;
+    } else {
+        // Perbarui waktu aktivitas terakhir
+        $_SESSION['last_activity'] = time();
+    }
 }
 
 include "koneksi.php";

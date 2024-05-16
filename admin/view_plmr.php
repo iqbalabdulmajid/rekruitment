@@ -94,8 +94,8 @@ if (isset($_SESSION['admin'])) {
             echo "<td>" . $data['nama'] . "</td>";
             echo "<td>" . $data['keterangan'] . "</td>";
             echo "<td>
-                <a href='edit.php?id=" . $data['id_pelamar'] . "' class='btn btn-primary btn-sm'><i class='fa fa-edit'></i> Edit</a>
-                <a href='hapus.php?id=" . $data['id_pelamar'] . "' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i> Hapus</a>
+            <a href='lihat_plmr.php?id_pelamar=".$data['id_pelamar']."'>Lihat</a> | 
+            <a href='del_plmr.php?id_pelamar=".$data['id_pelamar']."'>Hapus</a>
             </td>";
             echo "</tr>";
             $no++;
