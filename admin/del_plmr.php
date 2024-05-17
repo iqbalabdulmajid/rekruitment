@@ -5,6 +5,9 @@ include "koneksi.php";
 // Ambil data id_pelamar yang dikirim oleh index.php melalui URL
 $id_pelamar = $_GET['id_pelamar'];
 
+$query = "DELETE FROM fisik WHERE id_pelamar='".$id_pelamar."'";
+$sql = mysqli_query($connect, $query);
+
 // Menghapus data dari tabel tbl_nilai terlebih dahulu
 $query1 = "DELETE FROM tbl_nilai WHERE id_pelamar='".$id_pelamar."'";
 $sql1 = mysqli_query($connect, $query1);

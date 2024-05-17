@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   </head>
-<body style="background-image: url(bootstrap4/img/bg.png");">
+<body style="background-image: url(bootstrap4/img/bg.png);">
 
   <?php 
   include "navbarb4.php";
@@ -21,13 +21,30 @@
 
   if (isset($_POST['register'])) {
     
-    $username      =$_POST['username'];
-    $password      =$_POST['password'];
-    $password_conf =$_POST['password_conf'];
+    $username      = $_POST['username'];
+    $password      = $_POST['password'];
+    $password_conf = $_POST['password_conf'];
 
-    if ($password==$password_conf) {
-      
-      $query = mysqli_query($connect, "INSERT into pelamar (username,password) VALUES ('$username','$password')");
+    if ($password == $password_conf) {
+        // Fetching the maximum id_pelamar
+        $query_max_id = mysqli_query($connect, "SELECT MAX(id_pelamar) as max_id FROM pelamar");
+        $row = mysqli_fetch_assoc($query_max_id);
+        $max_id = $row['max_id'];
+
+        // Incrementing the maximum id_pelamar
+        $next_id = $max_id + 1;
+        $query_max_nik = mysqli_query($connect, "SELECT MAX(nik) as max_nik FROM pelamar");
+        $row = mysqli_fetch_assoc($query_max_nik);
+        $max_nik = $row['max_nik'];
+
+        // Incrementing the maximum nik
+        $next_nik = $max_nik + 1;
+          // Setting a default value for status_pegawai
+          $default_status_pegawai = "Pending";
+
+        // Inserting the new record with the incremented id_pelamar
+        $query = mysqli_query($connect, "INSERT INTO pelamar (id_pelamar, username, password, nik, status_pegawai) VALUES ('$next_id', '$username', '$password', '$max_nik','$default_status_pegawai')");
+
 
       if ($query) {
         echo "
