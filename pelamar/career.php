@@ -1,8 +1,4 @@
-<?php
-session_start();
-if (@$_SESSION['pelamar']) {
-  $id_pelamar = $_SESSION['pelamar'];
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +34,7 @@ if (@$_SESSION['pelamar']) {
 		<h4> <?=$hasil['tgl_mulai'];?> s/d <?=$hasil['tgl_selesai'];?> </h4>
         <br> 
         <p> 
-          <a href="career.php?id_pelamar=<?php echo $id_pelamar; ?>&post=<?=$hasil['id_lowongan'];?>" class="btn magictime openDownLeftReturn btn-primary	">Baca Selengkapnya</a>
+          <a href="career.php?post=<?=$hasil['id_lowongan'];?>" class="btn magictime openDownLeftReturn btn-primary	">Baca Selengkapnya</a>
 
      <!--      <a href="#" class="btn magictime openDownLeftReturn btn-inverse"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Diposkan pada <?=$hasil['tgl_berita'];?></a>  -->
         </p> 
@@ -76,8 +72,8 @@ if (@$_SESSION['pelamar']) {
          
          
 
-          <?php if (isset($_SESSION['pelamar'])):?>
-            <a href="add_plmr.php?id_pelamar=<?php echo $id_pelamar; ?>&posisi_pekerjaan=<?=$hasil['posisi_pekerjaan'];?>&lokasi_seleksi=<?=$hasil['lokasi_seleksi'];?>" class="btn btn-primary">Daftar</a>
+          <?php if (!isset($_SESSION['pelamar'])):?>
+            <a href="add_plmr.php?posisi_pekerjaan=<?=$hasil['posisi_pekerjaan'];?>&lokasi_seleksi=<?=$hasil['lokasi_seleksi'];?>" class="btn btn-primary">Daftar</a>
 
          <?php endif ?>
 
@@ -128,9 +124,6 @@ if (@$_SESSION['pelamar']) {
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </body>
 </html>
-<?php
-} else {
-    include "illegal.php";
-}
+
 
 

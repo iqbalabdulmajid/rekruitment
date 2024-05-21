@@ -37,21 +37,23 @@ if (@$_SESSION['pelamar']) {
                     <a target="iframe_a" style="color: white;"><i class="fa fa-home " aria-hidden="true"></i> <span style="margin-left:10px;">Profile</span> </a>
                     <ul style="color: white; list-style-type: none; margin-left: 10px;">
                         <li><a target="iframe_a" href="lihat_plmr.php?id_pelamar=<?php echo $id_pelamar; ?>">Lihat Profile</a></li>
-                        <li><a target="iframe_a" href="up_plmr.php?id_pelamar=<?php echo $id_pelamar; ?>">update Profile</a></li>
+                        <li><a target="iframe_a" href="up_plmr.php?id_pelamar=<?php echo $id_pelamar; ?>">Isi Profile</a></li>
                         <li><a target="iframe_a" href="pass.php?id_pelamar=<?php echo $id_pelamar; ?>">Ganti Password</a></li>
                     </ul>
                 </li>
                 <li>
                     <a target="iframe_a" style="color: white;"><i class="fa fa-briefcase " aria-hidden="true"></i> <span style="margin-left:10px;">Karir</span> </a>
                     <ul style="color: white; list-style-type: none; margin-left: 10px;">
-                        <li><a target="iframe_a" href="career.php?id_pelamar=<?php echo $id_pelamar; ?>">Detail Karir</a></li>
+                        <li><a target="iframe_a" href="career.php">Detail Karir</a></li>
                     </ul>
                 </li>
                 <li>
                     <a target="iframe_a" style="color: white;"><i class="fa fa-file-o " aria-hidden="true"></i> <span style="margin-left:10px;">Ujian</span> </a>
                     <ul style="color: white; list-style-type: none; margin-left: 10px;">
-                        <li><a target="iframe_a" hre                        <li><a target="iframe_a" href="ujian_psikotes.php">Kerjakan Ujian</a></li>
- </ul>
+                        <li><a target="iframe_a" href="ujian_psikotes.php">Kerjakan Ujian</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
 
         <!-- Page Content -->

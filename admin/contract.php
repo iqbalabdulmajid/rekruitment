@@ -16,10 +16,10 @@
     include "koneksi.php";
     
     // Ambil data id_pelamar yang dikirim oleh index.php melalui URL
-    $nik = $_GET['nik'];
+    $id_pelamar = $_GET['id_pelamar'];
     
     // Query untuk menampilkan data pelamar berdasarkan ID pelamar yang dikirim
-    $query = "SELECT * FROM econtract WHERE nik='".$nik."'";
+    $query = "SELECT * FROM pelamar WHERE id_pelamar='".$id_pelamar."'";
     $sql = mysqli_query($connect, $query);  // Eksekusi/Jalankan query dari variabel $query
     $data = mysqli_fetch_array($sql); // Ambil data dari hasil eksekusi $sql
     ?>
@@ -39,7 +39,7 @@
    <!-- akhir judul -->
 
     <div class="container">
-    <form action="pro_up_contract.php?nik=<?php echo $nik; ?>" method="post">
+    <form action="e-contract.php" method="post">
             <table>
                 <tr>
                     <th>Pernyataan</th>
@@ -48,61 +48,61 @@
                 </tr>
                 <tr>
                     <td>Karyawan mengetahui tentang bisnis perusahaan</td>
-                    <td><input type="radio" name="soal1" value="1" <?php if($data['soal1'] == '1') echo 'checked="checked"'; ?>></td>
-                    <td><input type="radio" name="soal1" value="0" <?php if($data['soal1'] == '0') echo 'checked="checked"'; ?>></td>
+                    <td><input type="radio" name="p1" value="1"></td>
+                    <td><input type="radio" name="p1" value="0"></td>
                 </tr>
                 <tr>
                     <td>Karyawan mampu berpartisipasi dalam memberikan masukan demi perkembangan unit maupun perusahaan</td>
-                    <td><input type="radio" name="soal2" value="1" <?php if($data['soal2'] == '1') echo 'checked="checked"'; ?>></td>
-                    <td><input type="radio" name="soal2" value="0" <?php if($data['soal2'] == '0') echo 'checked="checked"'; ?>></td>
+                    <td><input type="radio" name="p2" value="1"></td>
+                    <td><input type="radio" name="p2" value="0"></td>
                 </tr>
                 <tr>
                     <td>Karyawan mampu menyelesaikan masalah dengan baik</td>
-                    <td><input type="radio" name="soal3" value="1" <?php if($data['soal3'] == '1') echo 'checked="checked"'; ?>></td>
-                    <td><input type="radio" name="soal3" value="0" <?php if($data['soal3'] == '0') echo 'checked="checked"'; ?>></td>
+                    <td><input type="radio" name="p3" value="1"></td>
+                    <td><input type="radio" name="p3" value="0"></td>
                 </tr>
                 <tr>
                     <td>Karyawan mampu menghadapi perbedaan</td>
-                    <td><input type="radio" name="soal4" value="1" <?php if($data['soal4'] == '1') echo 'checked="checked"'; ?>></td>
-                    <td><input type="radio" name="soal4" value="0" <?php if($data['soal4'] == '0') echo 'checked="checked"'; ?>></td>
+                    <td><input type="radio" name="p4" value="1"></td>
+                    <td><input type="radio" name="p4" value="0"></td>
                 </tr>
                 <tr>
                     <td>Karyawan memiliki keinginan untuk mengembangkan diri demi performansi unit/perusahaan</td>
-                    <td><input type="radio" name="soal5" value="1" <?php if($data['soal5'] == '1') echo 'checked="checked"'; ?>></td>
-                    <td><input type="radio" name="soal5" value="0" <?php if($data['soal5'] == '0') echo 'checked="checked"'; ?>></td>
+                    <td><input type="radio" name="p5" value="1"></td>
+                    <td><input type="radio" name="p5" value="0"></td>
                 </tr>
                 <tr>
                     <td>Direkomendasikan untuk perpanjangan kontrak</td>
-                    <td><input type="radio" name="soal6" value="1" <?php if($data['soal6'] == '1') echo 'checked="checked"'; ?>></td>
-                    <td><input type="radio" name="soal6" value="0" <?php if($data['soal6'] == '0') echo 'checked="checked"'; ?>></td>
+                    <td><input type="radio" name="p5" value="1"></td>
+                    <td><input type="radio" name="p5" value="0"></td>
                 </tr>
             </table>
             <div class="form-group row">
               <label  class="col-sm-2 col-form-label"> Masa Kerja</label>
               <div class="col-sm-7 col-sm-offsite-3">
-                <input type="text" class="form-control" name="masa_kerja" placeholder="durasi perpanjangan kontrak" value="<?php echo $data['masa_kerja']; ?>">
+                <input type="text" class="form-control" name="tempat_lhr" placeholder="durasi perpanjangan kontrak">
               </div>
             </div>
             <div class="form-group row">
               <label  class="col-sm-2 col-form-label"> Awal Kontrak</label>
               <div class="col-sm-7 col-sm-offsite-3">
-                <input type="date" class="form-control" name="mulai_kontrak" value="<?php echo $data['mulai_kontrak']; ?>">
+                <input type="date" class="form-control" name="tgl_lhr">
               </div>
             </div>
             <div class="form-group row">
               <label  class="col-sm-2 col-form-label"> Akhir Kontrak</label>
               <div class="col-sm-7 col-sm-offsite-3">
-                <input type="date" class="form-control" name="akhir_kontrak" value="<?php echo $data['akhir_kontrak']; ?>">
+                <input type="date" class="form-control" name="tgl_lhr">
               </div>
             </div>
             <div class="form-group row">
               <label  class="col-sm-2 col-form-label">Alasan</label>
               <div class="col-sm-7 col-sm-offsite-3">
-                  <select class="form-control" required="true" name="status_pegawai">
-                      <option value="<?php echo $data['status_pegawai']; ?>" selected ><?php echo $data['status_pegawai']; ?></option>
-                      <option value="mengundurkan diri">Mengundurkan Diri</option>
-                      <option value="phk">PHK</option>
-                      <option value="kontrak kerja selesai">Kontrak Kerja Selesai </option>
+                  <select class="form-control" required="true" name="agama">
+                      <option>-- Pilih --</option>
+                      <option value="Islam">Mengundurkan Diri</option>
+                      <option value="Kristen (Katolik">PHK</option>
+                      <option value="Kristen (Protestan)">Kontrak Kerja Selesai </option>
                   </select>
               </div> 
             </div>

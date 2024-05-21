@@ -56,7 +56,6 @@ if(@$_SESSION['admin']){
                           <li><a target="iframe_a" href="lihat_admin.php?id_admin=<?php echo"$id_admin"; ?>">Lihat Profile</a></li>
                           <li><a target="iframe_a" href="up_admin.php?id_admin=<?php echo"$id_admin"; ?>">Update Profile</a></li>
                            <li><a target="iframe_a" href="add_admin.php">Tambah HRD</a></li>
-                           <li><a target="iframe_a" href="add_ho.php">Tambah HO</a></li>
                           <li><a target="iframe_a" href="pass.php?id_admin=<?php echo"$id_admin"; ?>">Ganti Password</a></li>
                         </ul>
                     </li>
@@ -75,11 +74,11 @@ if(@$_SESSION['admin']){
                     <li>
                         <a target="iframe_a" style="color: white;"><i class="fa fa-file-text-o" aria-hidden="true"></i><span style="margin-left:10px;">Rekruitmen</span>  </a>
                         <ul style="color: white; list-style-type: none; margin-left: 10px;">
-                          <li><a target="iframe_a" href="plmr.php">Seleksi Berkas</a></li>
+                          <li><a target="iframe_a" href="">Seleksi Berkas</a></li>
                           <li><a target="iframe_a" href="add_soal.php">Tambah Soal</a></li>
                           <li><a target="iframe_a" href="view_soal.php">Lihat Soal</a></li>  
-                          <li><a target="iframe_a" href="view_fisik.php">Tes Fisik</a></li>
-                          <li><a target="iframe_a" href="wwcr.php">Wawancara</a></li>
+                          <li><a target="iframe_a" href="">Tes Fisik</a></li>
+                          <li><a target="iframe_a" href="">Wawancara</a></li>
                         </ul>
                     </li>
                    
@@ -126,19 +125,13 @@ if(@$_SESSION['admin']){
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function(){
-        // Menyembunyikan submenu saat halaman dimuat
-        $('ul ul').hide();
-
-        // Menampilkan submenu saat menu induk diklik
-        $('li').click(function(){
-            $(this).find('ul').slideToggle(200);
+            $('li').click(function(){
+                $('ul', this).stop().slideToggle(200);
+            });
+            $('ul li').click(function(e) {
+                e.stopPropagation();
+            });
         });
-
-        // Mencegah penutupan submenu saat submenu diklik
-        $('ul li').click(function(e) {
-            e.stopPropagation();
-        });
-    });
     </script>
 
     
